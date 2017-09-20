@@ -34,6 +34,7 @@
     </div>
     
     <script src="/public/assets/jquery/jquery.min.js"></script>
+    <script src="/public/assets/jquery-cookie/jquery.cookie.js"></script>
     <script src="/public/assets/bootstrap/js/bootstrap.min.js"></script>
     <script>
         $("#loginBtn").click(function(){
@@ -44,6 +45,7 @@
                 data: $("#loginForm").serialize(),
                 success: function(data){
                     if(data.code == 200){
+                        $.cookie('loginInfo',JSON.stringify(data.result),{path:'/'});
                         location.href="/main/index"
                     } 
                 }

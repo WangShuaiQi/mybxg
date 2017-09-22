@@ -1,7 +1,8 @@
+define(['jquery','cookie'],function($){
 
-	NProgress.start();
+	// NProgress.start();
 
-	NProgress.done();
+	// NProgress.done();
 
 	$('.navs ul').prev('a').on('click', function () {
 		$(this).next().slideToggle();
@@ -23,11 +24,13 @@
 	});
 	//检测用户登录
 	var flag = $.cookie('PHPSESSID');
-	if(!flag){
+	if(!flag&& location.pathname !='/main/login'){
 		location.href='/main/login';
 	}
 	var loginInfo=$.cookie('loginInfo');
+	console.log(loginInfo);
 	loginInfo=loginInfo && JSON.parse(loginInfo);
 	//设置头像
 	$(".aside .profile img").attr('src',loginInfo.tc_avatar);
 	$(".aside .profile h4").html(loginInfo.tc_name);
+});

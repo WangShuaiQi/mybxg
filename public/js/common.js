@@ -1,4 +1,4 @@
-define(['jquery','cookie'],function($){
+define(['jquery','template','cookie'],function($,template){
 
 	// NProgress.start();
 
@@ -28,9 +28,11 @@ define(['jquery','cookie'],function($){
 		location.href='/main/login';
 	}
 	var loginInfo=$.cookie('loginInfo');
-	console.log(loginInfo);
 	loginInfo=loginInfo && JSON.parse(loginInfo);
 	//设置头像
-	$(".aside .profile img").attr('src',loginInfo.tc_avatar);
-	$(".aside .profile h4").html(loginInfo.tc_name);
+	// $(".aside .profile img").attr('src',loginInfo.tc_avatar);
+	// $(".aside .profile h4").html(loginInfo.tc_name);
+	var tpl = '<div class="avatar img-circle"><img src="{{tc_avatar}}"></div><h4>{{tc_name}}</h4>'
+    var html =template.render(tpl,loginInfo);
+    $('.aside .profile').html(html);
 });

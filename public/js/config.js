@@ -4,6 +4,8 @@ require.config({
 		jquery:'jquery/jquery',
 		cookie:'jquery-cookie/jquery.cookie',
 		common:'../js/common',
-		login:'../js/login'
+		login:'../js/login',
+		template:'artTemplate/template-web',
+		teacherlist:'../js/teacherlist',
 	}
 });

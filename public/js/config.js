@@ -14,6 +14,7 @@ require.config({
 		teacheradd:'../js/teacheradd',
 		common:'../js/common',
 		login:'../js/login',
+		settings:'../js/settings',
 	},
 	shim:{
 		bootstrap:{

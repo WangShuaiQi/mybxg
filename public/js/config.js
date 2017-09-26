@@ -10,6 +10,7 @@ require.config({
         uploadify: 'uploadify/jquery.uploadify.min',
         datepicker: 'bootstrap-datepicker/js/bootstrap-datepicker',
         language: 'bootstrap-datepicker/locales/bootstrap-datepicker.zh-CN.min',
+        region: 'jquery-region/jquery.region',
         util: '../js/util',
         teacherlist: '../js/teacherlist',
         teacheradd: '../js/teacheradd',

@@ -5,6 +5,8 @@ require.config({
 		cookie:'jquery-cookie/jquery.cookie',
 		bootstrap:'bootstrap/js/bootstrap.min',
 		template:'artTemplate/template-web',
+		validate:'validate/jquery-validate',
+		form:'jquery-form/jquery.form',
 		datepicker:'bootstrap-datepicker/js/bootstrap-datepicker',
 		language:'bootstrap-datepicker/locales/bootstrap-datepicker.zh-CN.min',
 		util:'../js/util',
@@ -19,6 +21,9 @@ require.config({
 		},
 		language:{
 			deps:['jquery','datepicker']
+		},
+		validate:{
+			deps:['jquery']
 		}
 	}
 });

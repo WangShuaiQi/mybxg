@@ -1,4 +1,4 @@
-define(['jquery', 'template', 'ckeditor', 'uploadify', 'region','datepicker', 'language'], function ($, template, CKEDITOR) {
+define(['jquery', 'template', 'ckeditor', 'uploadify', 'region', 'datepicker', 'language', 'validate', 'form'], function ($, template, CKEDITOR) {
     $.ajax({
         data: 'get',
         url: '/api/teacher/profile',
@@ -25,12 +25,37 @@ define(['jquery', 'template', 'ckeditor', 'uploadify', 'region','datepicker', 'l
                 url: '/public/assets/jquery-region/region.json',
             })
 
-            CKEDITOR.replace('editor',{
-                toolbarGroups : [
-                    { name: 'clipboard', groups: [ 'clipboard', 'undo' ] },
-                    { name: 'editing', groups: [ 'find', 'selection', 'spellchecker', 'editing' ] }
+            CKEDITOR.replace('editor', {
+                toolbarGroups: [
+                    {name: 'clipboard', groups: ['clipboard', 'undo']},
+                    {name: 'editing', groups: ['find', 'selection', 'spellchecker', 'editing']}
                 ]
             });
+
+            $("#settingsForm").validate({
+                sendForm: false,
+                valid: function () {
+                    var p = $('#p').find('option:selected').text();
+                    var c = $('#c').find('option:selected').text();
+                    var d = $('#d').find('option:selected').text();
+                    var hometown = p + '|' + c + '|' + d;
+
+                    for(var instance in CKEDITOR.instances){
+                        CKEDITOR.instances[instance].updateElement();
+                    }
+                    $(this).ajaxSubmit({
+                        type: 'post',
+                        url: '/api/teacher/modify',
+                        data: {tc_hometown: hometown},
+                        datatype: 'json',
+                        success: function (data) {
+                            if (data.code == 200) {
+                                //location.reload();
+                            }
+                        }
+                    })
+                },
+            })
         }
     })
 });
